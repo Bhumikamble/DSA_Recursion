@@ -1,6 +1,16 @@
+// functions of hashmap
+// put()
+// get()
+// containsKey()
+// remove()
+// size()
+// keySet()
+
+
+
 import java.util.*;
 public class Hashmap1 {
-    static class HashMap<K,V>{  //generics means kuch toh type hoga which we dont know
+    static class HashMap<K,V>{  //generics means kuch toh type hoga which we dont know (jaha key ka type chahiye waha k use hoga)
         private class Node{
             K key;
             V value;
@@ -25,22 +35,47 @@ public class Hashmap1 {
         }
 
         private int hashFunction(K key){
-            int bi = key.hashCode();
-            return Math.abs(bi) % N;
+            int bi = key.hashCode();   //return positive and negative values and we want positive value so will use math.absolute
+            return Math.abs(bi) % N;   //bi=bucket index
         }
+
+
+
         private int searchInLL(K key,int bi){
-            LinkedList<Node> ll = 
+            LinkedList<Node> ll = buckets[bi];
+            int di=0;
+            for(int i=0;i<ll.size(); i++){
+                if(ll.get(i).key == key){
+                    return i; //di
+                }
+            }
+            return -1;
         }
+
+        private void rehash() {
+            LinkedList <Node> oldBucket[] = buckets;
+            buckets = new LinkedList[N*2];
+
+            for(int i=0; i<oldBucket.length; i++){
+                LinkedList<Node> ll = oldBucket[i];
+                for(int j=0; j<ll.size(); j++){
+                    Node node = ll.get(j);
+                    put(node.key, node.value);
+                }
+            }
+        }
+
+
         public void put(K key, V value){
             int bi = hashFunction(key);
             int di=searchInLL(key, bi);//bi=bucket index di=data index
 
-            if(di == -1){
+            if(di == -1){ //key doesnt exists
                 buckets[bi].add(new Node(key,value));
                 n++;
             }
-            else{
-                Node node=buckets[bi].get(di);
+            else{ //key exists 
+                Node node =buckets[bi].get(di);
                 node.value=value;
             }
 
