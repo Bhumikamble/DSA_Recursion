@@ -86,16 +86,42 @@ public class Hashmap1 {
         }
 
         public boolean containsKey(K key){
-            return false;
+            int bi = hashFunction(key);
+            int di=searchInLL(key, bi);//bi=bucket index di=data index
+
+            if(di == -1){ //key doesnt exists
+               return false;
+            }
+            else{ //key exists 
+               return true;
+            }
         }
+
+
+
 
         public V remove (K key){
             return null;
         }
 
+
+
+
+
         public V get(K key){
-            return null;
+            int bi = hashFunction(key);
+            int di=searchInLL(key, bi);//bi=bucket index di=data index
+
+            if(di == -1){ //key doesnt exists
+               return null;
+            }
+            else{ //key exists 
+                Node node =buckets[bi].get(di);
+                node.value=value;
+            }
         }
+
+
 
         public ArrayList<K> keySet() {
             return null;
@@ -104,5 +130,13 @@ public class Hashmap1 {
         public boolean isEmpty(){
             return false;
         }
+    }
+
+    public static void main(String args[]){
+        HashMap<String, Integer> rap = new HashMap<>();
+        map.put("India" , 190);
+        map.put("China" , 200);
+        map.put("US" , 50);
+        map.put("Nepal" , 5);
     }
 }
