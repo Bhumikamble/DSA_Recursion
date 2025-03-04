@@ -20,8 +20,8 @@ public class Hashmap1 {
             }
         }
 
-        private int n;//number of nodes
-        private int N;//number of buckets
+        private int n; //number of nodes
+        private int N; //number of buckets
         private LinkedList<Node> buckets[];//N-Bucket.length//will store all data//it is actually a hashmap
 
         
