@@ -1,0 +1,22 @@
+body {
+    display: flex;
+     justify-content: center;  
+     align-items: center;  
+    height: 100vh;  /* Full viewport height */
+    margin: 0;  /* Remove default margin */
+    background-color: #f5f5f5;
+}
+
+.box {
+    width: 200px;
+    height: 100px;
+    background-color: #3498db; /* Blue color */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
